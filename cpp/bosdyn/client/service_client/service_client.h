@@ -140,7 +140,7 @@ class ServiceClient {
         std::promise<Result<PromiseResultType>> result_promise, const RPCParameters& parameters) {
         BOSDYN_ASSERT_PRECONDITION(m_message_pump != nullptr,
                                    "Message pump cannot be null for request type %s",
-                                   Request::GetDescriptor()->full_name().c_str());
+                                   std::string(Request::GetDescriptor()->full_name()).c_str());
 
         // The one_time pointer is deleted by MessagePump::Update after the callback function
         // returns
@@ -230,8 +230,8 @@ class ServiceClient {
         // Initialize RPC call.
         auto ret = one_time.get();
         m_message_pump->AddCall(std::move(one_time));
-        ret->Start(std::move(requests), header, rpc_call, callback, std::move(promise),
-                   Request::descriptor()->full_name());
+        ret->Start(std::move(chunks), request.header(), rpc_call, callback, std::move(promise),
+                   std::string(Request::descriptor()->full_name()));
         return ret;
     }
 
