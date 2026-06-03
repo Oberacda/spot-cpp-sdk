@@ -230,7 +230,7 @@ class ServiceClient {
         // Initialize RPC call.
         auto ret = one_time.get();
         m_message_pump->AddCall(std::move(one_time));
-        ret->Start(std::move(chunks), request.header(), rpc_call, callback, std::move(promise),
+        ret->Start(std::move(requests), header, rpc_call, callback, std::move(promise),
                    std::string(Request::descriptor()->full_name()));
         return ret;
     }
@@ -657,7 +657,7 @@ class ServiceClient {
         auto ret = one_time.get();
         m_message_pump->AddCall(std::move(one_time));
         ret->Start(std::move(chunks), request.header(), rpc_call, callback, std::move(promise),
-                   Request::descriptor()->full_name());
+                   std::string(Request::descriptor()->full_name()));
         return ret;
     }
 
