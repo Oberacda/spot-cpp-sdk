@@ -159,7 +159,7 @@ if (BUILD_SHARED_LIBS)
   add_library (bosdyn_client SHARED ${bosdyn_client_SRC})
   set_property(TARGET bosdyn_client PROPERTY POSITION_INDEPENDENT_CODE 1)
   target_compile_features(bosdyn_client PUBLIC cxx_std_17)
-  target_link_libraries(bosdyn_client PUBLIC bosdyn_api Eigen3::Eigen)
+  target_link_libraries(bosdyn_client PUBLIC bosdyn_api Eigen3::Eigen CLI11::CLI11)
   target_include_directories(bosdyn_client PUBLIC
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>
     $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>
@@ -175,7 +175,7 @@ endif()
 add_library (bosdyn_client_static STATIC ${bosdyn_client_SRC})
 set_property(TARGET bosdyn_client_static PROPERTY POSITION_INDEPENDENT_CODE 1)
 target_compile_features(bosdyn_client_static PUBLIC cxx_std_17)
-target_link_libraries(bosdyn_client_static PUBLIC bosdyn_api_static Eigen3::Eigen)
+target_link_libraries(bosdyn_client_static PUBLIC bosdyn_api_static Eigen3::Eigen CLI11::CLI11)
 target_include_directories(bosdyn_client_static PUBLIC
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>
   $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>
